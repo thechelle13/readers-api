@@ -31,27 +31,25 @@ class ReviewViewSet(viewsets.ViewSet):
         # Create a new instance of a review and assign property
         # values from the request payload using `request.data`
 
-
+        pass
         # Save the review
 
-        try:
-            # Serialize the objects, and pass request as context
-
-            # Return the serialized data with 201 status code
-
-        except Exception as ex:
-            return Response(None, status=status.HTTP_400_BAD_REQUEST)
+        # try:
+        #     # Serialize the objects, and pass request as context
+        #     # Return the serialized data with 201 status code
+        # except Exception as ex:
+        #     return Response(None, status=status.HTTP_400_BAD_REQUEST)
 
     def retrieve(self, request, pk=None):
-        try:
+        # try:
             # Get the requested review
-
+        pass
             # Serialize the object (make sure to pass the request as context)
 
             # Return the review with 200 status code
 
-        except Review.DoesNotExist:
-            return Response(status=status.HTTP_404_NOT_FOUND)
+        # except Review.DoesNotExist:
+        #     return Response(status=status.HTTP_404_NOT_FOUND)
 
     def destroy(self, request, pk=None):
         try:
