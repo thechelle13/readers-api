@@ -3,33 +3,24 @@
         "model": "digestapi.book",
         "pk": 1,
         "fields": {
-            "user": 1,
+            "user_id": 1,
             "title": "Book 1",
             "author": "Author 1",
             "isbn_number": "1234567890123",
-            "cover_image": "https://example.com/cover1.jpg"
+            "cover_image": "https://example.com/cover1.jpg",
+            "categories": [1,2] 
         }
     },
     {
         "model": "digestapi.book",
         "pk": 2,
         "fields": {
-            "user": 2,
+            "user_id": 2,
             "title": "Book 2",
             "author": "Author 2",
             "isbn_number": "2345678901234",
-            "cover_image": "https://example.com/cover2.jpg"
-        }
-    },
-    {
-        "model": "digestapi.book",
-        "pk": 3,
-        "fields": {
-            "user": 1,
-            "title": "Book 3",
-            "author": "Author 3",
-            "isbn_number": "3456789012345",
-            "cover_image": "https://example.com/cover3.jpg"
+            "cover_image": "https://example.com/cover2.jpg",
+            "categories": [1] 
         }
     }
 ]
