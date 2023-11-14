@@ -3,11 +3,14 @@ from rest_framework.response import Response
 from rest_framework import serializers
 from digestapi.models import Book
 from .categories import CategorySerializer
+from .reviews import ReviewSerializer
+
 
 
 class BookSerializer(serializers.ModelSerializer):
     is_owner = serializers.SerializerMethodField()
     categories = CategorySerializer(many=True)
+    reviews = ReviewSerializer(many=True)
 
     def get_is_owner(self, obj):
         # Check if the authenticated user is the owner
@@ -15,7 +18,7 @@ class BookSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Book
-        fields = ['id', 'title', 'author', 'isbn_number', 'cover_image', 'is_owner', 'categories']
+        fields = ['id', 'title', 'author', 'isbn_number', 'cover_image', 'is_owner', 'categories', 'reviews']
 
 
 class BookViewSet(viewsets.ViewSet):

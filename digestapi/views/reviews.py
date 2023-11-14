@@ -1,6 +1,8 @@
 from rest_framework import viewsets, status, serializers, permissions
 from rest_framework.response import Response
 from digestapi.models import Review
+from django.contrib.auth.models import User
+
 
 class ReviewSerializer(serializers.ModelSerializer):
     is_owner = serializers.SerializerMethodField()
@@ -20,12 +22,12 @@ class ReviewViewSet(viewsets.ViewSet):
 
     def list(self, request):
         # Get all reviews
-
+        reviews = Review.objects.all()
         # Serialize the objects, and pass request to determine owner
         serializer = ReviewSerializer(reviews, many=True, context={'request': request})
 
         # Return the serialized data with 200 status code
-
+        return Response(serializer.data)
 
     def create(self, request):
         # Create a new instance of a review and assign property
@@ -41,15 +43,15 @@ class ReviewViewSet(viewsets.ViewSet):
         #     return Response(None, status=status.HTTP_400_BAD_REQUEST)
 
     def retrieve(self, request, pk=None):
-        # try:
+        try:
             # Get the requested review
-        pass
+            review = Review.objects.all()
             # Serialize the object (make sure to pass the request as context)
-
+            serializer = ReviewSerializer(review, context={'request': request})
             # Return the review with 200 status code
-
-        # except Review.DoesNotExist:
-        #     return Response(status=status.HTTP_404_NOT_FOUND)
+            return Response(serializer.data)
+        except Review.DoesNotExist:
+           return Response(status=status.HTTP_404_NOT_FOUND)
 
     def destroy(self, request, pk=None):
         try:
@@ -69,3 +71,9 @@ class ReviewViewSet(viewsets.ViewSet):
 
         except Review.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
+        
+class ReviewSerializer(serializers.ModelSerializer):
+    
+    class Meta: 
+        model = User
+        fields = ['first_name','last_name',]
